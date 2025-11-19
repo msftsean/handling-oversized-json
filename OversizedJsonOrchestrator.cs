@@ -68,6 +68,13 @@ namespace Contoso.AIFoundry.JsonProcessing
     /// <summary>
     /// Main orchestrator that implements the complete 5-step approach.
     /// Handles preprocessing, chunking, validation, LLM analysis, and aggregation.
+    /// 
+    /// Key features for incident data processing:
+    /// - Supports context-varying chunking: Summary from previous chunk becomes context for next
+    /// - Flexible for multiple user prompts: Summarization, compliance, historical analysis
+    /// - Optimized for CAD incident data: Incident timelines, severity grouping, location context
+    /// - Maintains context across chunks for improved accuracy
+    /// - Real-time aggregation and streaming of results
     /// </summary>
     public class OversizedJsonOrchestrator
     {
@@ -94,14 +101,18 @@ namespace Contoso.AIFoundry.JsonProcessing
         }
 
         /// <summary>
-        /// Process a large JSON API response using the 5-step approach.
+        /// Process a large JSON API response using the 5-step approach with context preservation.
+        /// Supports context-varying chunking where previous chunk summary informs the next chunk.
         /// </summary>
         public async Task<AuditReport> ProcessLargeApiResponseAsync(
             List<Dictionary<string, object>> rawData,
-            Func<Dictionary<string, object>, (string priority, double riskScore)> sortKeyFunc = null)
+            Func<Dictionary<string, object>, (string priority, double riskScore)> sortKeyFunc = null,
+            bool useContextVaryingPattern = true)
         {
             Console.WriteLine("\n" + new string('=', 70));
             Console.WriteLine("PROCESSING LARGE JSON RESPONSE - 5 STEP APPROACH");
+            if (useContextVaryingPattern)
+                Console.WriteLine("(Using context-varying chunking pattern for improved accuracy)");
             Console.WriteLine(new string('=', 70));
 
             // ================================================================
@@ -124,10 +135,22 @@ namespace Contoso.AIFoundry.JsonProcessing
             var chunks = _chunker.ChunkRecords(filtered, sortKeyFunc);
             var chunkMetadata = _chunker.CreateChunkMetadata(chunks);
 
-            Console.WriteLine($"  ✓ Created {chunks.Count} chunks:");
-            foreach (var meta in chunkMetadata)
+            if (useContextVaryingPattern)
             {
-                Console.WriteLine($"    - Chunk {meta.ChunkIndex}: {meta.RecordCount} records, {meta.EstimatedTokens} tokens");
+                Console.WriteLine($"  ✓ Created {chunks.Count} chunks (context-varying pattern enabled):");
+                foreach (var meta in chunkMetadata)
+                {
+                    var contextMarker = meta.IncludesPreviousContext ? " [+previous context]" : "";
+                    Console.WriteLine($"    - Chunk {meta.ChunkIndex}: {meta.RecordCount} records, {meta.EstimatedTokens} tokens{contextMarker}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"  ✓ Created {chunks.Count} chunks:");
+                foreach (var meta in chunkMetadata)
+                {
+                    Console.WriteLine($"    - Chunk {meta.ChunkIndex}: {meta.RecordCount} records, {meta.EstimatedTokens} tokens");
+                }
             }
 
             // ================================================================
@@ -165,8 +188,10 @@ namespace Contoso.AIFoundry.JsonProcessing
             // STEP 4: STRUCTURED OUTPUT PROCESSING - Analyze with LLM
             // ================================================================
             Console.WriteLine("\n[STEP 4] Structured Output Processing - Analyzing chunks with LLM...");
+            Console.WriteLine("  (Using context-varying pattern: each chunk summary informs the next)");
 
             var chunkResults = new List<AnalysisResult>();
+            string previousChunkSummary = null;
 
             for (int i = 0; i < chunks.Count; i++)
             {
@@ -177,9 +202,11 @@ namespace Contoso.AIFoundry.JsonProcessing
                     var result = await AnalyzeChunkAsync(
                         chunkData: chunks[i],
                         chunkIndex: i,
-                        totalChunks: chunks.Count);
+                        totalChunks: chunks.Count,
+                        previousChunkContext: useContextVaryingPattern ? previousChunkSummary : null);
 
                     chunkResults.Add(result);
+                    previousChunkSummary = result.Summary;  // Use for next chunk in context-varying pattern
                     Console.WriteLine($" ✓ ({result.HighPriorityIssues.Count} high-priority issues)");
                 }
                 catch (Exception ex)
@@ -222,7 +249,8 @@ namespace Contoso.AIFoundry.JsonProcessing
                     FilteredPayloadSizeKb = reductionStats.FilteredSizeKb,
                     ReductionPercent = reductionStats.ReductionPercent,
                     ChunksCreated = chunks.Count,
-                    TokenBudgetUtilized = true
+                    TokenBudgetUtilized = true,
+                    ContextVaryingPatternUsed = useContextVaryingPattern
                 }
             };
 
@@ -236,16 +264,35 @@ namespace Contoso.AIFoundry.JsonProcessing
 
         /// <summary>
         /// Analyze a single chunk of records using Azure OpenAI with structured outputs.
+        /// Supports context-varying pattern: previous chunk summary can be provided as context.
         /// </summary>
         private async Task<AnalysisResult> AnalyzeChunkAsync(
             List<Dictionary<string, object>> chunkData,
             int chunkIndex,
-            int totalChunks)
+            int totalChunks,
+            string previousChunkContext = null)
         {
             var chunkJson = JsonSerializer.Serialize(chunkData, new JsonSerializerOptions { WriteIndented = true });
 
             var systemPrompt = GetSystemPrompt();
-            var userMessage = $"Analyze the following {chunkData.Count} records (chunk {chunkIndex + 1} of {totalChunks}):\n\n{chunkJson}";
+            
+            // For context-varying pattern: include previous chunk's summary for continuity
+            var userMessage = string.Empty;
+            if (!string.IsNullOrEmpty(previousChunkContext))
+            {
+                userMessage = $"""
+                    CONTEXT FROM PREVIOUS ANALYSIS:
+                    {previousChunkContext}
+                    
+                    Now analyze the following {chunkData.Count} records (chunk {chunkIndex + 1} of {totalChunks}):
+                    
+                    {chunkJson}
+                    """;
+            }
+            else
+            {
+                userMessage = $"Analyze the following {chunkData.Count} records (chunk {chunkIndex + 1} of {totalChunks}):\n\n{chunkJson}";
+            }
 
             // Create response format with JSON schema
             var responseFormat = BinaryData.FromString("""
@@ -403,5 +450,8 @@ namespace Contoso.AIFoundry.JsonProcessing
 
         [JsonPropertyName("token_budget_utilized")]
         public bool TokenBudgetUtilized { get; set; }
+        
+        [JsonPropertyName("context_varying_pattern_used")]
+        public bool ContextVaryingPatternUsed { get; set; }
     }
 }

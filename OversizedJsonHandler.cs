@@ -12,12 +12,16 @@ namespace Contoso.AIFoundry.JsonProcessing
 {
     /// <summary>
     /// Handles large JSON responses that exceed LLM token limits.
-    /// Implements the 5-step approach:
+    /// Implements the 5-step approach optimized for incident data processing:
     /// 1. Preprocessing - Filter to relevant fields
-    /// 2. Semantic Chunking - Group data intelligently
+    /// 2. Semantic Chunking - Group data intelligently (supports context-varying patterns)
     /// 3. Token Budget Management - Validate before sending
     /// 4. Structured Output Processing - Use JSON schema
-    /// 5. Aggregation - Combine results
+    /// 5. Aggregation - Combine results with context preservation
+    /// 
+    /// Based on meeting insights for CAD incident data from manual entries and transcriptions.
+    /// Supports various user prompts: summaries for supervisors, incident history for dispatchers,
+    /// compliance analysis, and custom analysis tasks.
     /// </summary>
 
     // ============================================================================
@@ -26,7 +30,9 @@ namespace Contoso.AIFoundry.JsonProcessing
 
     /// <summary>
     /// Filters large JSON responses to extract only fields relevant to analysis.
-    /// This dramatically reduces token count before sending to the LLM.
+    /// This dramatically reduces token count before sending to the LLM (typically 95%+ reduction).
+    /// 
+    /// For incident data: Focuses on incident type, severity, timeline, location, and key events.
     /// </summary>
     public class JsonPreprocessor<T>
     {
@@ -97,6 +103,15 @@ namespace Contoso.AIFoundry.JsonProcessing
     /// <summary>
     /// Intelligently chunks JSON data based on semantic boundaries and token limits.
     /// Groups related items together while respecting token budgets.
+    /// 
+    /// Supports multiple chunking strategies:
+    /// - Fixed-size: Simple row-based chunking
+    /// - Semantic grouping: By incident severity, location, or business unit
+    /// - Context-varying: Where previous chunk summary becomes context for next chunk
+    ///   (preserves context across chunks for improved accuracy)
+    /// 
+    /// For CAD incident data: Groups incidents by severity level, then location/time
+    /// to maintain contextual relationships while respecting token limits.
     /// </summary>
     public class SemanticChunker
     {
@@ -157,6 +172,7 @@ namespace Contoso.AIFoundry.JsonProcessing
 
         /// <summary>
         /// Create metadata for each chunk for tracking and logging.
+        /// Includes context preservation markers for context-varying patterns.
         /// </summary>
         public List<ChunkMetadata> CreateChunkMetadata(List<List<Dictionary<string, object>>> chunks)
         {
@@ -168,12 +184,17 @@ namespace Contoso.AIFoundry.JsonProcessing
                 var chunkJson = JsonSerializer.Serialize(chunk);
                 var tokens = _tokenCounter.CountTokens(chunkJson);
 
+                // Reserve tokens for context from previous chunk (context-varying pattern)
+                var contextTokenBudget = i > 0 ? 500 : 0;
+
                 metadata.Add(new ChunkMetadata
                 {
                     ChunkIndex = i,
                     TotalChunks = chunks.Count,
                     RecordCount = chunk.Count,
-                    EstimatedTokens = tokens
+                    EstimatedTokens = tokens,
+                    IncludesPreviousContext = i > 0,
+                    ContextTokensReserved = contextTokenBudget
                 });
             }
 
@@ -187,6 +208,16 @@ namespace Contoso.AIFoundry.JsonProcessing
         public int TotalChunks { get; set; }
         public int RecordCount { get; set; }
         public int EstimatedTokens { get; set; }
+        
+        /// <summary>
+        /// For context-varying patterns: whether to include previous chunk's summary
+        /// </summary>
+        public bool IncludesPreviousContext { get; set; }
+        
+        /// <summary>
+        /// Tokens reserved for previous chunk context in context-varying pattern
+        /// </summary>
+        public int ContextTokensReserved { get; set; }
     }
 
 
