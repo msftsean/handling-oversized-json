@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    
+    <Title>Handling Oversized JSON with Azure AI Foundry</Title>
+    <Description>Production-ready C# implementation for processing large JSON responses using Azure OpenAI and gpt-4o. Implements the proven 5-step approach for handling datasets that exceed LLM token limits.</Description>
+    <Authors>Contoso</Authors>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.14" />
+    <PackageReference Include="Azure.Identity" Version="1.11.4" />
+  </ItemGroup>
+
+</Project>
