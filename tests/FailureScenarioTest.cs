@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Contoso.AIFoundry.Tests
+namespace Zava.AIFoundry.Tests
 {
     /// <summary>
     /// FAILURE SCENARIO TEST

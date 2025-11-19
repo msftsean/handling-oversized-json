@@ -6,7 +6,7 @@
 
 ## What You're Getting
 
-This is a **production-ready C# implementation** of the 5-step approach for handling large JSON responses that exceed LLM token limits. Everything has been genericized and branded as "Contoso" for resale to your customer.
+This is a **production-ready C# implementation** of the 5-step approach for handling large JSON responses that exceed LLM token limits. Everything has been genericized and branded as "Zava" for their AI workload deployment.
 
 ---
 
@@ -85,7 +85,7 @@ This is a **production-ready C# implementation** of the 5-step approach for hand
 ## 🎯 What Was Changed from Original
 
 ### Branding
-- ✅ Removed "Motorola" - now generic "Contoso"
+- ✅ Removed "Motorola" - now branded as "Zava"
 - ✅ Removed device/case-specific terminology
 - ✅ Made field names generic and customizable
 

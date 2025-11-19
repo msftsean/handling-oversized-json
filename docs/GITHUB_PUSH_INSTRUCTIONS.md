@@ -19,7 +19,7 @@ cd /mnt/user-data/outputs
 git init
 git add .
 git branch -M main
-git commit -m "Add C# implementation of 5-step JSON handling approach with Contoso branding"
+git commit -m "Add C# implementation of 5-step JSON handling approach with Zava branding"
 git remote add origin https://github.com/msftsean/handling-oversized-json.git
 git push -u origin main
 ```
@@ -87,7 +87,7 @@ dotnet build
 Your GitHub repo will be ready for customers with:
 
 ✅ Complete C# implementation  
-✅ Fully genericized (Contoso branding)  
+✅ Fully branded for Zava AI workloads  
 ✅ Production-ready code  
 ✅ Comprehensive documentation  
 ✅ Model drift monitoring guide  

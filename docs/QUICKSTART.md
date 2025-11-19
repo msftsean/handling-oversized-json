@@ -70,7 +70,7 @@ You should see:
 ```
 ================================================================================
 LARGE JSON HANDLING WITH AZURE AI FOUNDRY
-Contoso Example
+Zava Example
 ================================================================================
 
 [STEP 1] Preprocessing - Filtering JSON to relevant fields...

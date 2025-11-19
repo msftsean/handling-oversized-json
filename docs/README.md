@@ -229,7 +229,7 @@ Incident Analysis Report (JSON with detected patterns)
 ### Basic Usage with Context-Varying Pattern
 
 ```csharp
-using Contoso.AIFoundry.JsonProcessing;
+using Zava.AIFoundry.JsonProcessing;
 
 // 1️⃣ Define relevant incident fields
 var relevantFields = new[] {

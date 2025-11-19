@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Contoso.AIFoundry.JsonProcessing;
+using Zava.AIFoundry.JsonProcessing;
 
-namespace Contoso.AIFoundry.Tests
+namespace Zava.AIFoundry.Tests
 {
     /// <summary>
     /// End-to-end tests for the 5-step incident data processing pipeline.

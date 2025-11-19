@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Azure.AI.OpenAI;
 using Azure.Identity;
 
-namespace Contoso.AIFoundry.JsonProcessing
+namespace Zava.AIFoundry.JsonProcessing
 {
     // ============================================================================
     // STEP 4 & 5: STRUCTURED OUTPUT PROCESSING & AGGREGATION
@@ -379,7 +379,7 @@ namespace Contoso.AIFoundry.JsonProcessing
         private string GetSystemPrompt()
         {
             return """
-            You are an expert analyst for Contoso, specializing in data quality and compliance review.
+            You are an expert analyst for Zava, specializing in data quality and compliance review.
             
             Your task is to analyze the provided records and identify:
             1. HIGH PRIORITY ISSUES: Critical problems requiring immediate action
