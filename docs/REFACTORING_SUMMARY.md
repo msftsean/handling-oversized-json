@@ -1,4 +1,7 @@
-# Refactoring Summary - Meeting-Driven Updates
+# 📝 Refactoring Summary
+
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![Changes](https://img.shields.io/badge/changes-12%2B-orange.svg) - Meeting-Driven Updates
 
 ## Overview
 

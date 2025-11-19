@@ -1,4 +1,7 @@
-# The 5-Step Approach for Handling Oversized JSON Responses
+# 🏗️ The 5-Step Approach
+
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![Status](https://img.shields.io/badge/status-Reference-blue.svg) for Handling Oversized JSON Responses
 ## Azure AI Foundry Solution
 
 ---

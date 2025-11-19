@@ -1,5 +1,9 @@
 # 🚨 FAILURE SCENARIO DEMO: Raw JSON Over 128K Tokens
 
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![Type](https://img.shields.io/badge/type-Before%2FAfter%20Demo-orange.svg)
+![Importance](https://img.shields.io/badge/importance-Critical-red.svg)
+
 **Purpose:** Show what happens WITHOUT the 5-step approach before it was implemented.
 
 ---

@@ -13,7 +13,7 @@ This guide provides concrete steps for monitoring LLM performance on incident an
 
 ## Understanding Model Drift
 
-### What is Model Drift?
+### 🔍 What is Model Drift?
 
 Model drift occurs when the LLM's output quality degrades over time due to:
 
@@ -22,7 +22,7 @@ Model drift occurs when the LLM's output quality degrades over time due to:
 - **Prompt changes**: You modify prompts, changing expected output
 - **Context changes**: Your chunking strategy evolves
 
-### Why It Matters for Incident Analysis
+### ⚠️ Why It Matters for Incident Analysis
 
 Poor incident summaries can cause:
 - Dispatchers miss critical context
@@ -31,7 +31,7 @@ Poor incident summaries can cause:
 - Response times increase
 - Public safety impacted
 
-### Detection Strategy
+### 📈 Detection Strategy
 
 Weekly evaluation catches drift early, before it affects operations:
 

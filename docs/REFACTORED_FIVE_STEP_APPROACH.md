@@ -7,20 +7,20 @@
 
 When LLM APIs return JSON responses that exceed token limits (128K for gpt-4o), traditional approaches fail. This guide outlines a proven 5-step methodology developed for real-world incident data processing in CAD systems that:
 
-✅ **Reduces payload by 95%+** through intelligent filtering  
-✅ **Chunks data semantically** while respecting token budgets  
-✅ **Validates every request** before sending to LLM  
-✅ **Maintains context across chunks** using context-varying patterns  
-✅ **Uses structured outputs** for 100% reliable parsing  
-✅ **Aggregates results** into comprehensive reports with preserved accuracy  
+- ✅ **Reduces payload by 95%+** through intelligent filtering  
+- ✅ **Chunks data semantically** while respecting token budgets  
+- ✅ **Validates every request** before sending to LLM  
+- ✅ **Maintains context across chunks** using context-varying patterns  
+- ✅ **Uses structured outputs** for 100% reliable parsing  
+- ✅ **Aggregates results** into comprehensive reports with preserved accuracy  
 
-**Real-world results:** 500 incident records (19.8 MB) → 231 KB with 98.8% reduction, processed in 12 intelligent chunks with full context preservation.
+**📊 Real-world results:** 500 incident records (19.8 MB) → 231 KB with **98.8% reduction**, processed in 12 intelligent chunks with full context preservation.
 
 ---
 
 ## Problem Statement
 
-### Your Challenge
+### 🚨 Your Challenge
 
 Your CAD (Computer-Aided Dispatch) or enterprise applications need to analyze large incident datasets that accumulate in databases. However:
 
@@ -34,7 +34,7 @@ Your CAD (Computer-Aided Dispatch) or enterprise applications need to analyze la
 - **Cost spirals quickly**: Large payloads = high token usage = expensive processing for customers
 - **Model drift occurs**: Output quality degrades over time without continuous evaluation
 
-### Traditional Failures
+### ❌ Traditional Failures
 
 ```
 ❌ Sending raw incident JSON → "maximum tokens exceeded" error

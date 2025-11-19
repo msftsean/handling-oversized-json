@@ -1,4 +1,8 @@
-# Deliverables Summary
+# 📦 Project Deliverables
+
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![Status](https://img.shields.io/badge/status-Complete-brightgreen.svg)
+![Date](https://img.shields.io/badge/date-2025--11--19-blue.svg)
 
 ## What You're Getting
 
