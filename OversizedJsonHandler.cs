@@ -71,20 +71,11 @@ namespace Contoso.AIFoundry.JsonProcessing
         /// <summary>
         /// Calculate payload reduction statistics.
         /// </summary>
-        public ReductionStats CalculateReduction(object original, List<Dictionary<string, object>> filtered)
+        public double CalculateReduction(int originalSize, List<List<Dictionary<string, object>>> filtered)
         {
-            var originalStr = JsonSerializer.Serialize(original);
             var filteredStr = JsonSerializer.Serialize(filtered);
-
-            var originalBytes = originalStr.Length;
             var filteredBytes = filteredStr.Length;
-
-            return new ReductionStats
-            {
-                OriginalSizeKb = originalBytes / 1024.0,
-                FilteredSizeKb = filteredBytes / 1024.0,
-                ReductionPercent = (1 - (double)filteredBytes / originalBytes) * 100
-            };
+            return (1 - (double)filteredBytes / originalSize) * 100;
         }
     }
 
@@ -93,6 +84,14 @@ namespace Contoso.AIFoundry.JsonProcessing
         public double OriginalSizeKb { get; set; }
         public double FilteredSizeKb { get; set; }
         public double ReductionPercent { get; set; }
+    }
+
+    public class TokenValidationResult
+    {
+        public bool IsValid { get; set; }
+        public string ErrorMessage { get; set; }
+        public int TotalTokensEstimate { get; set; }
+        public double UtilizationPercent { get; set; }
     }
 
 
@@ -250,6 +249,27 @@ namespace Contoso.AIFoundry.JsonProcessing
         /// <summary>
         /// Validate that a request fits within token budget before sending to LLM.
         /// </summary>
+        public TokenValidationResult ValidateTokenBudget(
+            string requestData,
+            int promptTokenBudget,
+            int outputTokenBudget)
+        {
+            var dataTokens = _tokenCounter.CountTokens(requestData);
+            var totalTokens = dataTokens + promptTokenBudget + outputTokenBudget;
+            var isValid = totalTokens <= _contextWindow;
+
+            return new TokenValidationResult
+            {
+                IsValid = isValid,
+                TotalTokensEstimate = totalTokens,
+                UtilizationPercent = (double)totalTokens / _contextWindow * 100,
+                ErrorMessage = !isValid ? $"Request exceeds token budget: {totalTokens} > {_contextWindow}" : null
+            };
+        }
+
+        /// <summary>
+        /// Validate that a request fits within token budget before sending to LLM.
+        /// </summary>
         public TokenValidationResult ValidateRequest(
             string systemPrompt,
             string userMessage,
@@ -265,30 +285,13 @@ namespace Contoso.AIFoundry.JsonProcessing
 
             return new TokenValidationResult
             {
-                SystemPromptTokens = systemTokens,
-                UserMessageTokens = userTokens,
-                DataTokens = dataTokens,
-                TotalInputTokens = totalInputTokens,
-                AvailableTokens = availableTokens,
-                RemainingTokens = remainingTokens,
-                FitsBudget = remainingTokens >= 0,
-                UtilizationPercent = (double)totalInputTokens / availableTokens * 100
+                IsValid = remainingTokens >= 0,
+                TotalTokensEstimate = totalInputTokens,
+                UtilizationPercent = (double)totalInputTokens / availableTokens * 100,
+                ErrorMessage = remainingTokens < 0 ? $"Request exceeds available tokens by {Math.Abs(remainingTokens)}" : null
             };
         }
     }
-
-    public class TokenValidationResult
-    {
-        public int SystemPromptTokens { get; set; }
-        public int UserMessageTokens { get; set; }
-        public int DataTokens { get; set; }
-        public int TotalInputTokens { get; set; }
-        public int AvailableTokens { get; set; }
-        public int RemainingTokens { get; set; }
-        public bool FitsBudget { get; set; }
-        public double UtilizationPercent { get; set; }
-    }
-
 
     // ============================================================================
     // TOKEN COUNTER INTERFACE - For token counting implementations
@@ -300,6 +303,7 @@ namespace Contoso.AIFoundry.JsonProcessing
     public interface ITokenCounter
     {
         int CountTokens(string text);
+        int EstimateTokenCount(string text);
     }
 
     /// <summary>
@@ -316,6 +320,11 @@ namespace Contoso.AIFoundry.JsonProcessing
                 return 0;
 
             return (int)Math.Ceiling(text.Length / AvgCharsPerToken);
+        }
+
+        public int EstimateTokenCount(string text)
+        {
+            return CountTokens(text);
         }
     }
 }
