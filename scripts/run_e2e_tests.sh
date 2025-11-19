@@ -259,24 +259,24 @@ else
 fi
 
 # Test 6.2: REFACTORED_FIVE_STEP_APPROACH.md
-if [ -f REFACTORED_FIVE_STEP_APPROACH.md ]; then
-    lines=$(wc -l < REFACTORED_FIVE_STEP_APPROACH.md)
+if [ -f docs/REFACTORED_FIVE_STEP_APPROACH.md ]; then
+    lines=$(wc -l < docs/REFACTORED_FIVE_STEP_APPROACH.md)
     print_test "Documentation: Comprehensive 5-step guide ($(printf '%,d' "$lines") lines)" "PASS"
 else
     print_test "Documentation: Comprehensive 5-step guide" "FAIL"
 fi
 
 # Test 6.3: MODEL_DRIFT_MONITORING.md
-if [ -f MODEL_DRIFT_MONITORING.md ]; then
-    lines=$(wc -l < MODEL_DRIFT_MONITORING.md)
+if [ -f docs/MODEL_DRIFT_MONITORING.md ]; then
+    lines=$(wc -l < docs/MODEL_DRIFT_MONITORING.md)
     print_test "Documentation: Model drift monitoring guide ($(printf '%,d' "$lines") lines)" "PASS"
 else
     print_test "Documentation: Model drift monitoring guide" "FAIL"
 fi
 
 # Test 6.4: E2E tests exist
-if [ -f E2ETests.cs ]; then
-    test_count=$(grep -c "async Task Test_" E2ETests.cs)
+if [ -f tests/E2ETests.cs ]; then
+    test_count=$(grep -c "async Task Test_" tests/E2ETests.cs)
     print_test "Documentation: E2E Test suite with $test_count tests" "PASS" "" "Tests: $test_count"
 else
     print_test "Documentation: E2E Test suite" "FAIL"
