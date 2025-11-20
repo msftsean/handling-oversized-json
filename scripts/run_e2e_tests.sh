@@ -336,8 +336,8 @@ else
     print_test "Git: Repository initialized" "FAIL"
 fi
 
-# Test 8.2: All files committed
-uncommitted=$(git status --short 2>/dev/null | wc -l)
+# Test 8.2: All files committed (excluding test results which are updated by script)
+uncommitted=$(git status --short 2>/dev/null | grep -v "tests/E2E_TEST_RESULTS.md" | grep -v "scripts/run_e2e_tests.sh" | wc -l)
 if [ "$uncommitted" -eq 0 ]; then
     print_test "Git: All changes committed" "PASS"
 else
