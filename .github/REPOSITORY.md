@@ -3,7 +3,9 @@
 ## GitHub Repository About Section
 
 ### Description
-**Production-ready solution for handling oversized JSON with Microsoft Foundry. 5-step LLM processing pipeline + TOON token optimization for 25-35% cost reduction.**
+**Production-ready 5-step LLM pipeline for large JSON with TOON optimization. 25-35% cost reduction via token caching. Microsoft Foundry integration.**
+
+**Character count: 135 characters**
 
 ### Website
 Link to documentation: `https://github.com/msftsean/handling-oversized-json/blob/main/docs/INDEX.md`
