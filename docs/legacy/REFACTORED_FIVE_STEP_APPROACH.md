@@ -1,5 +1,5 @@
 # The 5-Step Approach for Handling Oversized JSON Responses
-## Azure AI Foundry Solution for Large Language Model Processing
+## Microsoft Foundry Solution for Large Language Model Processing
 
 ---
 
@@ -728,7 +728,7 @@ foreach (var model in models)
 
 **2. Weekly Model Drift Assessment**
 
-Use Azure AI Foundry's evaluation tools:
+Use Microsoft Foundry's evaluation tools:
 
 ```csharp
 // After running analyses for a week
@@ -930,5 +930,5 @@ The 5-step approach transforms impossible incident processing tasks into managea
 
 ---
 
-**Questions?** Refer to the C# code examples or consult Azure AI Foundry documentation.
+**Questions?** Refer to the C# code examples or consult Microsoft Foundry documentation.
 

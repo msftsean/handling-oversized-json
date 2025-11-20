@@ -77,7 +77,7 @@ Detailed guide for ongoing model quality assessment:
   - Action Extraction Accuracy (critical for incident analysis)
   - Severity Prediction Accuracy (priority classification)
   - Response Time Compliance (SLA adherence)
-- **Azure AI Foundry integration** - how to use evaluation tools
+- **Microsoft Foundry integration** - how to use evaluation tools
 - **Automated weekly evaluations** - Function-based, container-based, or manual options
 - **Drift response procedures** - investigation and remediation strategies
 - **Model comparison framework** - selecting between gpt-4o, gpt-4o-mini, gpt-4-turbo
@@ -212,7 +212,7 @@ public async Task WeeklyModelEvaluation()
 **MODEL_DRIFT_MONITORING.md:**
 - 2,000+ lines on ongoing quality assurance
 - Weekly evaluation procedures
-- Azure AI Foundry integration guide
+- Microsoft Foundry integration guide
 - CJIS compliance monitoring
 - Escalation procedures
 

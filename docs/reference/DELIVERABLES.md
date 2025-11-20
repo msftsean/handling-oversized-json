@@ -180,7 +180,7 @@ They should:
 
 ✅ **Microsoft Foundry Integration**
 - Uses Azure OpenAI directly
-- Compatible with Azure AI Foundry
+- Compatible with Microsoft Foundry
 - Managed Identity support
 - Cost tracking via Azure
 

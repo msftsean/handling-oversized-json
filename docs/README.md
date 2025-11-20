@@ -1,4 +1,4 @@
-# 🚨 Handling Oversized JSON with Azure AI Foundry
+# 🚨 Handling Oversized JSON with Microsoft Foundry
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen.svg)
@@ -8,7 +8,7 @@
 
 ## 5️⃣-Step LLM Processing for Large Incident Data
 
-A production-ready solution for processing large JSON responses (>128K tokens) using Azure OpenAI, gpt-4o, and Azure AI Foundry. Optimized for CAD incident data processing with context-preserving chunking strategies.
+A production-ready solution for processing large JSON responses (>128K tokens) using Azure OpenAI, gpt-4o, and Microsoft Foundry. Optimized for CAD incident data processing with context-preserving chunking strategies.
 
 **✨ Key Achievement:** 98.8% payload reduction while maintaining analysis quality with context-varying patterns
 
@@ -149,7 +149,7 @@ Output shows 3️⃣ real-world use cases:
   - 🧠 Semantic Similarity (meaning preservation)
   - 🎯 Action Extraction Accuracy (critical for incidents)
   - 📊 Severity Prediction Accuracy (priority classification)
-- ☁️ Azure AI Foundry integration
+- ☁️ Microsoft Foundry integration
 - 🔐 CJIS compliance monitoring
 
 ### 📝 Refactoring Details
