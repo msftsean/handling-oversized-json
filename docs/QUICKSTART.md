@@ -69,7 +69,7 @@ You should see:
 
 ```
 ================================================================================
-LARGE JSON HANDLING WITH AZURE AI FOUNDRY
+LARGE JSON HANDLING WITH MICROSOFT FOUNDRY
 Zava Example
 ================================================================================
 
@@ -277,7 +277,7 @@ When ready for production:
 - **Detailed Guide:** [FIVE_STEP_APPROACH.md](FIVE_STEP_APPROACH.md)
 - **Model Drift:** [MODEL_DRIFT_MITIGATION_GUIDE.md](MODEL_DRIFT_MITIGATION_GUIDE.md)
 - **Full README:** [README.md](README.md)
-- **Azure AI Foundry:** https://learn.microsoft.com/en-us/azure/ai-foundry/
+- **Microsoft Foundry:** https://learn.microsoft.com/en-us/microsoft-foundry/
 
 ---
 

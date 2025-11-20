@@ -1,4 +1,4 @@
-# 🚨 Handling Oversized JSON with Azure AI Foundry
+# 🚨 Handling Oversized JSON with Microsoft Foundry
 
 ![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen.svg)
@@ -9,7 +9,7 @@
 
 **5️⃣-Step LLM Processing for Large Incident Data** + **🚀 TOON Token Optimization**
 
-A production-ready solution for processing large JSON responses (>128K tokens) using Azure OpenAI, gpt-4o, and Azure AI Foundry. Optimized for CAD incident data processing with context-preserving chunking strategies and **TOON** prompt caching for **25-35% cost savings**.
+A production-ready solution for processing large JSON responses (>128K tokens) using Azure OpenAI, gpt-4o, and Microsoft Foundry. Optimized for CAD incident data processing with context-preserving chunking strategies and **TOON** prompt caching for **25-35% cost savings**.
 
 **✨ Key Achievements:** 
 - 98.8% payload reduction while maintaining analysis quality

@@ -51,7 +51,7 @@ Month 6: API adds new alert categories
 
 ---
 
-## HOW AZURE AI FOUNDRY DETECTS DRIFT
+## HOW MICROSOFT FOUNDRY DETECTS DRIFT
 
 ### 1. Continuous Evaluation Pipeline
 
@@ -117,7 +117,7 @@ if any(drift_detected.values()):
 
 ### 3. Automated Metric Tracking
 
-**Azure AI Foundry Tracks:**
+**Microsoft Foundry Tracks:**
 
 ```
 Quality Metrics:
@@ -148,7 +148,7 @@ Cost Metrics:
 
 ### Step 1: Set Up Continuous Evaluation
 
-**In Azure AI Foundry:**
+**In Microsoft Foundry:**
 
 ```yaml
 # continuous_evaluation.yaml
@@ -389,7 +389,7 @@ ab_test = {
 
 ## DRIFT DETECTION DASHBOARD
 
-**Azure AI Foundry Provides:**
+**Microsoft Foundry Provides:**
 
 ```
 ┌──────────────────────────────────────────────────────────┐
@@ -636,7 +636,7 @@ Week 4: If successful → 100% rollout
         └─ New model is now production
 ```
 
-**Azure AI Foundry supports:**
+**Microsoft Foundry supports:**
 - Traffic splitting
 - Automated monitoring during rollout
 - One-click rollback if issues detected
@@ -645,7 +645,7 @@ Week 4: If successful → 100% rollout
 
 ## MEASURING DRIFT SEVERITY
 
-**Azure AI Foundry Drift Score (0-10):**
+**Microsoft Foundry Drift Score (0-10):**
 
 ```python
 def calculate_drift_score(current_metrics, baseline_metrics):
@@ -703,13 +703,13 @@ Scenario 3: Critical Drift
 
 **Response:**
 
-*"Great question - model drift is a critical concern for production AI systems. Azure AI Foundry provides enterprise-grade drift detection through continuous evaluation.*
+*"Great question - model drift is a critical concern for production AI systems. Microsoft Foundry provides enterprise-grade drift detection through continuous evaluation.*
 
 *Here's how it works:*
 
 *First, we establish a baseline using your ground truth dataset - essentially test cases with known correct answers. This might be 200-500 examples covering all your device types and alert scenarios.*
 
-*Second, Azure AI Foundry automatically runs evaluations on a sample of your production traffic - typically daily. It compares current performance against the baseline across metrics like accuracy, token usage, latency, and error rates.*
+*Second, Microsoft Foundry automatically runs evaluations on a sample of your production traffic - typically daily. It compares current performance against the baseline across metrics like accuracy, token usage, latency, and error rates.*
 
 *Third, when drift is detected - say accuracy drops 5% or token usage spikes 20% - the system automatically alerts your team. You get detailed dashboards showing exactly what changed and when.*
 
@@ -732,7 +732,7 @@ Scenario 3: Critical Drift
 
 **Response:**
 
-*"Another excellent question. Azure AI Foundry makes model updates safe through A/B testing and shadow deployments.*
+*"Another excellent question. Microsoft Foundry makes model updates safe through A/B testing and shadow deployments.*
 
 *When OpenAI releases a new model version - say a new gpt-4o - here's our recommended process:*
 
@@ -740,7 +740,7 @@ Scenario 3: Critical Drift
 
 *Second, analysis: Compare the shadow model's results to your current model. Is it more accurate? Does it use more tokens? Any regressions?*
 
-*Third, A/B test: If shadow testing looks good, route 10% of traffic to the new model. Monitor both versions in parallel. Azure AI Foundry tracks:*
+*Third, A/B test: If shadow testing looks good, route 10% of traffic to the new model. Monitor both versions in parallel. Microsoft Foundry tracks:*
 - *Quality metrics (accuracy, relevance)*
 - *Cost metrics (tokens per request)*
 - *Performance metrics (latency, errors)*
@@ -763,7 +763,7 @@ Scenario 3: Critical Drift
 
 - [ ] Create ground truth dataset (200-500 test cases)
 - [ ] Establish baseline evaluation
-- [ ] Configure Azure AI Foundry continuous evaluation
+- [ ] Configure Microsoft Foundry continuous evaluation
 - [ ] Set up monitoring dashboard
 - [ ] Define alert thresholds
 
@@ -812,7 +812,7 @@ Total: ~$230/month for comprehensive drift monitoring
 
 ## SUMMARY
 
-**Azure AI Foundry Mitigates Drift Through:**
+**Microsoft Foundry Mitigates Drift Through:**
 
 ✅ **Continuous Evaluation** - Automated daily monitoring
 ✅ **Baseline Comparison** - Track performance over time

@@ -347,7 +347,7 @@ namespace Contoso.AIFoundry.Examples
         {
             Console.WriteLine("""
             ╔════════════════════════════════════════════════════════════════════╗
-            ║   LARGE INCIDENT JSON HANDLING WITH AZURE AI FOUNDRY              ║
+            ║   LARGE INCIDENT JSON HANDLING WITH MICROSOFT FOUNDRY             ║
             ║   Multi-Use Case Example                                           ║
             ╚════════════════════════════════════════════════════════════════════╝
 

@@ -7,7 +7,7 @@
 
 **From the meeting:** "Model drift requires frequent evaluations, recommending at least weekly checks to maintain output quality."
 
-This guide provides concrete steps for monitoring LLM performance on incident analysis tasks using Azure AI Foundry's evaluation tools.
+This guide provides concrete steps for monitoring LLM performance on incident analysis tasks using Microsoft Foundry's evaluation tools.
 
 ---
 
@@ -181,7 +181,7 @@ var avgLatency = await MeasureAverageLatency(
 
 ---
 
-## Using Azure AI Foundry Evaluation Tools
+## Using Microsoft Foundry Evaluation Tools
 
 ### Step 1: Set Up Evaluation Dataset
 
@@ -200,7 +200,7 @@ foreach (var sample in samples)
     evaluationData.Add((sample.json, reference));
 }
 
-// Save for Azure AI Foundry
+// Save for Microsoft Foundry
 await SaveEvaluationDataset(evaluationData, "incident-eval-dataset-2024-11");
 ```
 
