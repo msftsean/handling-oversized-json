@@ -249,10 +249,10 @@ echo "Category 6: Documentation Tests" >> "$RESULTS_FILE"
 # Test 6.1: README.md exists and updated
 if [ -f README.md ]; then
     print_test "Documentation: README.md exists" "PASS"
-    if grep -q "incident data\|CAD\|context-varying" README.md; then
-        print_test "Documentation: README focused on incident data" "PASS"
+    if grep -q "5-step pipeline\|TOON\|oversized JSON\|token" README.md; then
+        print_test "Documentation: README covers 5-step pipeline and TOON" "PASS"
     else
-        print_test "Documentation: README focused on incident data" "FAIL"
+        print_test "Documentation: README covers 5-step pipeline and TOON" "FAIL"
     fi
 else
     print_test "Documentation: README.md exists" "FAIL"
