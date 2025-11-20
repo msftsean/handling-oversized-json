@@ -8,7 +8,7 @@ using Azure;
 using Azure.AI.OpenAI;
 using Azure.Identity;
 
-namespace Zava.AIFoundry.JsonProcessing
+namespace Contoso.AIFoundry.JsonProcessing
 {
     /// <summary>
     /// Handles large JSON responses that exceed LLM token limits.

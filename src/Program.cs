@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Zava.AIFoundry.JsonProcessing;
+using Contoso.AIFoundry.JsonProcessing;
 
-namespace Zava.AIFoundry.Examples
+namespace Contoso.AIFoundry.Examples
 {
     /// <summary>
     /// Example demonstrating the 5-step approach for handling large JSON responses
