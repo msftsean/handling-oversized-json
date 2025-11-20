@@ -54,6 +54,7 @@ Thumbs.db
 TestResults/
 *.trx
 test_results_*.txt
+tests/test_results_*.txt
 
 # Coverage reports
 coverage/
