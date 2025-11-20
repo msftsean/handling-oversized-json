@@ -258,20 +258,20 @@ else
     print_test "Documentation: README.md exists" "FAIL"
 fi
 
-# Test 6.2: REFACTORED_FIVE_STEP_APPROACH.md
-if [ -f docs/REFACTORED_FIVE_STEP_APPROACH.md ]; then
-    lines=$(wc -l < docs/REFACTORED_FIVE_STEP_APPROACH.md)
-    print_test "Documentation: Comprehensive 5-step guide ($(printf '%,d' "$lines") lines)" "PASS"
+# Test 6.2: REFACTORED_FIVE_STEP_APPROACH.md (moved to legacy)
+if [ -f docs/legacy/REFACTORED_FIVE_STEP_APPROACH.md ]; then
+    lines=$(wc -l < docs/legacy/REFACTORED_FIVE_STEP_APPROACH.md)
+    print_test "Documentation: Comprehensive 5-step guide ($lines lines)" "PASS"
 else
-    print_test "Documentation: Comprehensive 5-step guide" "FAIL"
+    print_test "Documentation: Comprehensive 5-step guide" "FAIL" "File not found at docs/legacy/REFACTORED_FIVE_STEP_APPROACH.md"
 fi
 
-# Test 6.3: MODEL_DRIFT_MONITORING.md
-if [ -f docs/MODEL_DRIFT_MONITORING.md ]; then
-    lines=$(wc -l < docs/MODEL_DRIFT_MONITORING.md)
-    print_test "Documentation: Model drift monitoring guide ($(printf '%,d' "$lines") lines)" "PASS"
+# Test 6.3: MODEL_DRIFT_MONITORING.md (moved to legacy)
+if [ -f docs/legacy/DRIFT_MONITORING.md ]; then
+    lines=$(wc -l < docs/legacy/DRIFT_MONITORING.md)
+    print_test "Documentation: Model drift monitoring guide ($lines lines)" "PASS"
 else
-    print_test "Documentation: Model drift monitoring guide" "FAIL"
+    print_test "Documentation: Model drift monitoring guide" "FAIL" "File not found at docs/legacy/DRIFT_MONITORING.md"
 fi
 
 # Test 6.4: E2E tests exist
@@ -292,11 +292,11 @@ echo "========================================" >> "$RESULTS_FILE"
 echo "Category 7: Code Quality Tests" >> "$RESULTS_FILE"
 
 # Test 7.1: Check for XML documentation comments
-doc_comments=$(grep -c "///" src/OversizedJsonHandler.cs src/OversizedJsonOrchestrator.cs src/Program.cs 2>/dev/null || echo 0)
-if [ "$doc_comments" -gt 20 ]; then
+doc_comments=$(grep "///" src/OversizedJsonHandler.cs src/OversizedJsonOrchestrator.cs src/Program.cs 2>/dev/null | wc -l)
+if [ "$doc_comments" -gt 50 ]; then
     print_test "Code Quality: XML documentation comments" "PASS" "" "Comments: $doc_comments"
 else
-    print_test "Code Quality: XML documentation comments" "FAIL" "Less than 20 doc comments"
+    print_test "Code Quality: XML documentation comments" "FAIL" "Fewer than 50 doc comments (found $doc_comments)"
 fi
 
 # Test 7.2: Check for error handling
