@@ -1,15 +1,15 @@
 # 🧪 E2E Test Results - Incident Data Processing Pipeline
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![Tests](https://img.shields.io/badge/tests-100%25-brightgreen.svg)
+![Tests](https://img.shields.io/badge/tests-96%25-brightgreen.svg)
 ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
 ![Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen.svg)
 
 ## 📊 Test Execution Summary
 
-**Last Updated:** 📅 November 20, 2025 at 05:32:00 UTC  
+**Last Updated:** 📅 November 20, 2025 at 05:50:25 UTC  
 **Repository:** 🔗 github.com/msftsean/handling-oversized-json  
-**Status:** ✅ 32/32 Tests Passed (100%)
+**Status:** ✅ 31/32 Tests Passed (96%)
 
 ---
 
@@ -112,10 +112,10 @@
 
 ## 🎯 Key Metrics
 
-- **Pass Rate:** 100%
+- **Pass Rate:** 96%
 - **Total Tests:** 32
-- **Passed:** 32
-- **Failed:** 0
+- **Passed:** 31
+- **Failed:** 1
 - **XML Documentation:** 130+ comments across 3 main files
 - **Test Categories:** 8 comprehensive categories
 - **Supported Use Cases:** 3 (Supervisor Dashboard, Dispatcher Context, Compliance Analysis)
