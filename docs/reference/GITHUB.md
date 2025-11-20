@@ -110,7 +110,7 @@ Customers can immediately:
 - [ ] Code compiles without errors
 - [ ] Example runs with sample data
 - [ ] Documentation is comprehensive
-- [ ] No Motorola/entity references remain
+- [ ] No company-specific references remain
 - [ ] All files are properly formatted
 - [ ] .gitignore is included
 - [ ] License is included (if needed)

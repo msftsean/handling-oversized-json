@@ -28,7 +28,7 @@
 
 ---
 
-## WHY THIS MATTERS FOR MOTOROLA
+## WHY THIS MATTERS FOR ZAVA
 
 **Real-World Scenario:**
 
@@ -144,7 +144,7 @@ Cost Metrics:
 
 ---
 
-## IMPLEMENTING DRIFT DETECTION FOR MOTOROLA
+## IMPLEMENTING DRIFT DETECTION FOR ZAVA
 
 ### Step 1: Set Up Continuous Evaluation
 
@@ -153,7 +153,7 @@ Cost Metrics:
 ```yaml
 # continuous_evaluation.yaml
 
-name: "Motorola Device Analysis - Drift Detection"
+name: "Zava Device Analysis - Drift Detection"
 
 schedule:
   frequency: "daily"  # Run every day
@@ -207,7 +207,7 @@ alerts:
 
 **Ground Truth = Known Correct Answers**
 
-For Motorola's use case:
+For Zava's use case:
 
 ```json
 {
@@ -697,7 +697,7 @@ Scenario 3: Critical Drift
 
 ---
 
-## TALKING POINTS FOR MOTOROLA
+## TALKING POINTS FOR ZAVA
 
 ### "How do you prevent model drift?"
 
@@ -713,7 +713,7 @@ Scenario 3: Critical Drift
 
 *Third, when drift is detected - say accuracy drops 5% or token usage spikes 20% - the system automatically alerts your team. You get detailed dashboards showing exactly what changed and when.*
 
-*For Motorola specifically, we'd set this up to:*
+*For Zava specifically, we'd set this up to:*
 - *Run daily evaluations on 2% of production traffic*
 - *Alert if accuracy drops below 90%*
 - *Alert if token costs increase more than 20%*
@@ -757,7 +757,7 @@ Scenario 3: Critical Drift
 
 ---
 
-## IMPLEMENTATION TIMELINE FOR MOTOROLA
+## IMPLEMENTATION TIMELINE FOR ZAVA
 
 ### Week 1-2: Setup
 
@@ -823,7 +823,7 @@ Total: ~$230/month for comprehensive drift monitoring
 ✅ **Drift Scoring** - Quantified severity assessment
 ✅ **Integrated Dashboards** - Visual performance tracking
 
-**For Motorola:**
+**For Zava:**
 - ~$230/month for comprehensive monitoring
 - Daily drift detection (vs. months without monitoring)
 - Automated alerts when issues arise

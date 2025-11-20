@@ -274,7 +274,7 @@ Created:
    - Compliance analysis? Use context-varying for patterns
    - Dispatcher context? Use location-based chunking
 
-### For Motorola Integration
+### For Zava Integration
 
 1. **Customize relevant_fields** for your incident schema
 2. **Update system prompts** for your specific use cases
